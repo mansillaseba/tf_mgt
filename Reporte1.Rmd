@@ -1,0 +1,29 @@
+---
+title: "Saneamiento sanitario en Quellón"
+subtitle: "Según resultados del Censo 2024"
+author: "Sebastian Mansilla Cárcamo"
+date: "28 de diciembre de 2025"
+output: 
+  html_document:
+    toc: true
+    theme: united
+    toc_depth: 4
+    highlight: tango
+---
+```{=html}
+<style>
+.html-widget {
+    margin: auto;
+}
+</style>
+```
+
+```{r setup, include=FALSE}
+# 1. Configuración global y carga de librerías
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(arrow)
+library(tidyverse)
+library(janitor)    
+library(kableExtra)
+```
