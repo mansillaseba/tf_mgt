@@ -27,3 +27,5 @@ library(tidyverse)
 library(janitor)    
 library(kableExtra)
 ```
+
+<!-- Se debe seguir trabajando para incrustar los resultados de la tabla en archivo exportable -->

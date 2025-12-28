@@ -67,7 +67,7 @@ poblacion_comuna_por_area <- personas_censo2024 %>%
   select(Área, Población) # Nos quedamos solo con las columnas finales
 
 # --- Generación de la tabla estilo Bootstrap limpio ---
-tabla_html <- poblacion_comuna_por_area %>%
+tabla_pobarea <- poblacion_comuna_por_area %>%
   kbl(format = "html", align = "lr") %>% 
   kable_styling(
     bootstrap_options = "hover", 
@@ -79,4 +79,4 @@ tabla_html <- poblacion_comuna_por_area %>%
   row_spec(nrow(poblacion_comuna_por_area), bold = TRUE) 
 
 # Para visualizar en RStudio:
-print(tabla_html)
+print(tabla_pobarea)
