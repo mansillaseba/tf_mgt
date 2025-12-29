@@ -9,6 +9,8 @@ output:
     theme: united
     toc_depth: 4
     highlight: tango
+    df_print: paged
+    code_folding: hide
 ---
 ```{=html}
 <style>
@@ -28,4 +30,62 @@ library(janitor)
 library(kableExtra)
 ```
 
-<!-- Se debe seguir trabajando para incrustar los resultados de la tabla en archivo exportable -->
+```{r include=FALSE}
+library(tidyverse)
+```
+
+```{r}
+pobarea <- read_csv("poblacion_comuna_por_area.csv", 
+                       locale = locale(
+                         decimal_mark = ",",   # La coma será el decimal
+                         grouping_mark = "."   # El punto será el separador de miles
+                       ))
+pobarea
+```
+
+```{r}
+personas_C2024_Quellon <- read_csv("personas_C2024_Quellon.csv")
+personas_C2024_Quellon
+```
+
+<!-- comentario con cmd+shift+c-->
+Otro
+```{r echo=FALSE}
+poblacion_comuna_por_area <- personas_C2024_Quellon %>%
+  filter(comuna == 10208) %>%
+  count(area, name = "poblacion_total") %>%
+  mutate(
+    Área = case_when(
+      area == 1 ~ "Urbana",
+      area == 2 ~ "Rural",
+      TRUE ~ "No aplica/Otro"
+    )
+  ) %>%
+  collect() %>% 
+  select(Área, poblacion_total) %>% 
+  
+  adorn_totals(where = "row", name = "Total") %>%
+  
+  mutate(Población = format(poblacion_total, big.mark = ".", scientific = FALSE)) %>%
+  select(Área, Población)
+
+tabla_pobarea <- poblacion_comuna_por_area %>%
+  kbl(format = "html", align = "lr") %>% 
+  kable_styling(
+    bootstrap_options = "hover", 
+    full_width = FALSE,           
+    position = "left"
+  ) %>%
+  row_spec(0, bold = TRUE, extra_css = "border-bottom: 2px solid #dee2e6; color: #212529;") %>% 
+  column_spec(1:2, extra_css = "padding: 12px; border-bottom: 1px solid #dee2e6;") %>% 
+  row_spec(nrow(poblacion_comuna_por_area), bold = TRUE) 
+tabla_pobarea
+```
+
+### Mi Reporte
+Aquí puedes ver el mapa guardado externamente:
+
+<iframe src="MapaInteractivo.html" width="100%" height="500px" style="border:none;"></iframe>
+
+Continúo con mi análisis...
+
