@@ -21,25 +21,30 @@ output:
 ```
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# 1. Configuración global y carga de librerías
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(arrow)
+library(tidyverse)
+library(janitor)    
+library(kableExtra)
 ```
+<br>
 
-## R Markdown
+# BASE DE DATOS
+La base datos censales, de geoparquet. Enlace para encontrarlos.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+<br>
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# POBLACIÓN POR ÁREA
+61,6% urbano y 38,4%
 
-```{r cars}
-summary(cars)
-```
+<iframe src="Export/pobarea.html" width="100%" height="250px" style="border:none;"></iframe>
 
-## Including Plots
+<iframe src="Export/mapmanzurbana.html" width="100%" height="500px" style="border:none;"></iframe>
 
-You can also embed plots, for example:
+<iframe src="Export/MapaInteractivo.html" width="100%" height="500px" style="border:none;"></iframe>
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+* Mostrar los datos cartográficos asociados al área urbana (cuál es la manzana urbana).
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+* Indicar las variables y como se determina la cantidad de población sin saneamiento o alcantarillado.
